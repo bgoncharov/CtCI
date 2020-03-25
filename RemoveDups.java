@@ -5,23 +5,23 @@ import java.util.HashSet;
 
 public class RemoveDups {
 
-    public static void remDups(LinkedListNode list) {
+    public static void remDups(LinkedListNode n) {
         HashSet<Integer> set = new HashSet<Integer>();
 
         LinkedListNode prev = null;
-        while (list != null) {
-            if (set.contains(list.data)) {
-                prev.next = list.next;
+        while (n != null) {
+            if (set.contains(n.data)) {
+                prev.next = n.next;
             } else {
-                set.add(list.data);
-                prev = list;
+                set.add(n.data);
+                prev = n;
             }
-            list = list.next;
+            n = n.next;
         }
     }
 
     public static void main(String[] args) {
-        LinkedListNode first = new LinkedListNode(0, null, null); //AssortedMethods.randomLinkedList(1000, 0, 2);
+        LinkedListNode first = new LinkedListNode(0, null, null);
         LinkedListNode head = first;
         LinkedListNode second = first;
         for (int i = 1; i < 8; i++) {
