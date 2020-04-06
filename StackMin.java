@@ -1,36 +1,45 @@
-public class StackMin {
+import java.util.Stack;
 
-    public static int[] arr = null;
+public class StackMin extends Stack<Integer> {
+    Stack<Integer> s2;
 
-    public static void pop() {
-
+    public StackMin() {
+        s2 = new Stack<Integer>();
     }
 
-    public static void push() {
-
-    }
-
-    public void addMin(int i) {
-
-        if (arr.length >= 0) {
-            int j = arr[arr.length];
-            if (i < j) {
-                arr[arr.length + 1] = i;
-            }
-        } else {
-            arr[0] = i;
+    public void push(int value){
+        if (value <= min()) {
+            s2.push(value);
         }
+        super.push(value);
     }
 
-    public void remMin(int i) {
-        for (int j = 0; j < arr.length; j++) {
-            if (i == arr[j]) {
-                arr[j] = null;
-            }
+    public Integer pop() {
+        int value = super.pop();
+        if (value == min()) {
+            s2.pop();
+        }
+        return value;
+    }
+
+    public int min() {
+        if (s2.isEmpty()) {
+            return Integer.MAX_VALUE;
+        } else {
+            return s2.peek();
         }
     }
 
     public static void main (String[] args) {
-
+        StackMin stack = new StackMin();
+        stack.push(5);
+        stack.push(6);
+        stack.push(3);
+        stack.push(7);
+        System.out.println(stack.min());
+        stack.pop();
+        System.out.println(stack.min());
+        stack.pop();
+        System.out.println(stack.min());
     }
 }
